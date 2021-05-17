@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import fr.o80.everythingisfine.R
-import fr.o80.everythingisfine.data.model.Pokemon
+import fr.o80.everythingisfine.domain.model.Pokemon
 import fr.o80.everythingisfine.presentation.viewmodel.DetailsViewModel
 
 private const val ARG_POKEMON_ID = "ARG_POKEMON_ID"
@@ -43,8 +43,8 @@ class DetailsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.pokemon.observe(viewLifecycleOwner) { (pokemon, isInPokedex) ->
-            viewHolder?.bind(pokemon, isInPokedex)
+        viewModel.pokemon.observe(viewLifecycleOwner) { pokemon ->
+            viewHolder?.bind(pokemon)
         }
     }
 
@@ -60,14 +60,14 @@ class DetailsFragment : Fragment() {
         private val force: TextView = view.findViewById(R.id.tv_attack_value)
         private val protection: TextView = view.findViewById(R.id.tv_defense_value)
 
-        fun bind(pokemon: Pokemon, isInPokedex: Boolean) {
+        fun bind(pokemon: Pokemon) {
             name.text = pokemon.name
-            health.text = pokemon.base.hp.toString()
-            force.text = pokemon.base.attack.toString()
-            protection.text = pokemon.base.defense.toString()
+            health.text = pokemon.hp.toString()
+            force.text = pokemon.attack.toString()
+            protection.text = pokemon.defense.toString()
 
             pokeball.apply {
-                if (isInPokedex) {
+                if (pokemon.isAttrapped) {
                     contentDescription = "Pokemon is in pokedex"
                     setImageResource(R.drawable.ic_pokeball_caught)
                 } else {
@@ -76,7 +76,7 @@ class DetailsFragment : Fragment() {
                 }
 
                 setOnClickListener {
-                    viewModel.onPokeballClicked(isInPokedex)
+                    viewModel.onPokeballClicked(pokemon.isAttrapped)
                 }
             }
         }

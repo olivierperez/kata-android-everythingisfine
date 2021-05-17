@@ -1,4 +1,4 @@
-package fr.o80.everythingisfine.presentation
+package fr.o80.everythingisfine.presentation.util
 
 import android.app.Activity
 import android.content.Intent

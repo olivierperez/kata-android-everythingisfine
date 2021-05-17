@@ -1,4 +1,4 @@
-package fr.o80.everythingisfine.util
+package fr.o80.everythingisfine.presentation.util
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager

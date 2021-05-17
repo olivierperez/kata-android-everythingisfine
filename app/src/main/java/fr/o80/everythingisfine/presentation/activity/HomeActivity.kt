@@ -8,7 +8,7 @@ import androidx.fragment.app.commit
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import fr.o80.everythingisfine.R
-import fr.o80.everythingisfine.data.model.Pokemon
+import fr.o80.everythingisfine.domain.model.Pokemon
 import fr.o80.everythingisfine.presentation.fragment.DetailsFragment
 import fr.o80.everythingisfine.presentation.fragment.ListFragment
 
