@@ -4,20 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import fr.o80.everythingisfine.data.model.Pokemon
-import fr.o80.everythingisfine.domain.GetPokedex
 import fr.o80.everythingisfine.domain.SearchPokemons
-import fr.o80.everythingisfine.util.EventLiveData
+import fr.o80.everythingisfine.domain.model.Pokemon
+import fr.o80.everythingisfine.presentation.util.EventLiveData
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchPokemons: SearchPokemons,
-    private val getPokedex: GetPokedex
+    private val searchPokemons: SearchPokemons
 ) : ViewModel() {
 
-    private val _pokemons = MutableLiveData<Pair<List<Pokemon>, Set<Int>>>()
-    val pokemons: LiveData<Pair<List<Pokemon>, Set<Int>>>
+    private val _pokemons = MutableLiveData<List<Pokemon>>()
+    val pokemons: LiveData<List<Pokemon>>
         get() = _pokemons
 
     private val _events = EventLiveData<Event>()
@@ -26,9 +24,8 @@ class SearchViewModel @Inject constructor(
 
     fun search(search: String) {
         val pokemons = searchPokemons(search)
-        val pokedex = getPokedex()
 
-        _pokemons.postValue(Pair(pokemons, pokedex))
+        _pokemons.postValue(pokemons)
     }
 
     fun onPokemonClicked(pokemon: Pokemon) {

@@ -1,7 +1,7 @@
 package fr.o80.everythingisfine.presentation.fragment
 
 import androidx.recyclerview.widget.DiffUtil
-import fr.o80.everythingisfine.data.model.Pokemon
+import fr.o80.everythingisfine.domain.model.Pokemon
 
 class PokemonDiff : DiffUtil.ItemCallback<Pokemon>() {
 

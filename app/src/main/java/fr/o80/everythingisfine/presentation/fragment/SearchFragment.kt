@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import fr.o80.everythingisfine.R
+import fr.o80.everythingisfine.presentation.util.closeKeyboard
 import fr.o80.everythingisfine.presentation.viewmodel.SearchViewModel
 import fr.o80.everythingisfine.presentation.viewmodel.SearchViewModel.Event.GoToDetails
-import fr.o80.everythingisfine.util.closeKeyboard
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -58,8 +58,7 @@ class SearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.pokemons.observe(viewLifecycleOwner) { (pokemons, pokedex) ->
-            adapter.updatePokedex(pokedex)
+        viewModel.pokemons.observe(viewLifecycleOwner) { pokemons ->
             adapter.submitList(pokemons)
         }
         viewModel.events.observe(viewLifecycleOwner) { event ->

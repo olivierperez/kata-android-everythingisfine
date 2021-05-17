@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import fr.o80.everythingisfine.R
-import fr.o80.everythingisfine.data.model.Pokemon
+import fr.o80.everythingisfine.domain.model.Pokemon
 import fr.o80.everythingisfine.presentation.viewmodel.ListViewModel
 import fr.o80.everythingisfine.presentation.viewmodel.ListViewModel.Event.GoToDetails
 
@@ -25,14 +25,13 @@ class ListFragment : Fragment() {
 
     private val viewModel: ListViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // TODO Add LoadingState
+        viewModel.start()
+
         return inflater.inflate(R.layout.fragment_list, container, false).apply {
             findViewById<RecyclerView>(R.id.pokemons).apply {
                 adapter = this@ListFragment.adapter
@@ -42,8 +41,7 @@ class ListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.pokemons.observe(viewLifecycleOwner) { (pokemons, pokedex) ->
-            adapter.updatePokedex(pokedex)
+        viewModel.pokemons.observe(viewLifecycleOwner) { pokemons ->
             adapter.submitList(pokemons)
         }
         viewModel.events.observe(viewLifecycleOwner) { event ->

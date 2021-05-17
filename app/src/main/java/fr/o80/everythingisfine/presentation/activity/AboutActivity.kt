@@ -10,7 +10,7 @@ import androidx.core.text.inSpans
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import fr.o80.everythingisfine.R
-import fr.o80.everythingisfine.presentation.LinkSpan
+import fr.o80.everythingisfine.presentation.util.LinkSpan
 
 @AndroidEntryPoint
 class AboutActivity : AppCompatActivity() {

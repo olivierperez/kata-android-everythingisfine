@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.o80.everythingisfine.R
-import fr.o80.everythingisfine.data.model.Pokemon
+import fr.o80.everythingisfine.domain.model.Pokemon
 
 class PokemonViewHolder(
     private val view: View
@@ -19,14 +19,14 @@ class PokemonViewHolder(
 
     fun bind(
         pokemon: Pokemon,
-             inPokedex: Boolean,
-             onPokemonClicked: () -> Unit,
-             onPokeballClicked: () -> Unit
+        inPokedex: Boolean,
+        onPokemonClicked: () -> Unit,
+        onPokeballClicked: () -> Unit
     ) {
         name.text = "${pokemon.name} [${pokemon.id}]"
-        hp.text = pokemon.base.hp.toString()
-        attack.text = pokemon.base.attack.toString()
-        defense.text = pokemon.base.defense.toString()
+        hp.text = pokemon.hp.toString()
+        attack.text = pokemon.attack.toString()
+        defense.text = pokemon.defense.toString()
 
         pokeball.apply {
             if (inPokedex) {

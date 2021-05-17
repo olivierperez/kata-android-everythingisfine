@@ -1,4 +1,4 @@
-package fr.o80.everythingisfine.util
+package fr.o80.everythingisfine.presentation.util
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
