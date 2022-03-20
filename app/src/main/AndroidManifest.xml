@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.o80.everythingisfine">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:name=".EverythingIsFine"
@@ -13,7 +12,8 @@
 
         <activity
             android:name=".presentation.activity.HomeActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
